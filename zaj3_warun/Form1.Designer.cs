@@ -55,11 +55,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(168, 94);
+            label1.Location = new Point(168, 92);
             label1.Name = "label1";
-            label1.Size = new Size(38, 15);
+            label1.Size = new Size(112, 15);
             label1.TabIndex = 1;
-            label1.Text = "label1";
+            label1.Text = "...................................";
             label1.Click += label1_Click;
             // 
             // button1
@@ -116,6 +116,7 @@
             button5.TabIndex = 6;
             button5.Text = "SQ";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // checkBox1
             // 
@@ -132,9 +133,11 @@
             // 
             numericUpDown1.Location = new Point(405, 48);
             numericUpDown1.Margin = new Padding(3, 2, 3, 2);
+            numericUpDown1.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(131, 23);
             numericUpDown1.TabIndex = 8;
+            numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
             // 
             // button6
             // 
@@ -143,26 +146,26 @@
             button6.Name = "button6";
             button6.Size = new Size(82, 22);
             button6.TabIndex = 9;
-            button6.Text = "button6";
+            button6.Text = "Generuj";
             button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Location = new Point(405, 141);
             label2.Name = "label2";
-            label2.Size = new Size(38, 15);
+            label2.Size = new Size(34, 15);
             label2.TabIndex = 10;
-            label2.Text = "label2";
+            label2.Text = "Czas:";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Location = new Point(493, 141);
             label3.Name = "label3";
-            label3.Size = new Size(38, 15);
+            label3.Size = new Size(0, 15);
             label3.TabIndex = 11;
-            label3.Text = "label3";
             // 
             // Form1
             // 
@@ -184,6 +187,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
             PerformLayout();
