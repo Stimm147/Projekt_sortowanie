@@ -7,6 +7,9 @@ namespace zaj3_warun
 {
     public partial class Form1 : Form
     {
+        int wartosc;
+        int[] tablica;
+        Stopwatch stopwatch = new Stopwatch();
         public Form1()
         {
             InitializeComponent();
@@ -62,15 +65,12 @@ namespace zaj3_warun
             }
             else
             {
-
-                var watch = new Stopwatch();
-                watch.Start();
+                stopwatch.Start();
                 SortBoubble(tablica);
-                watch.Stop();
-                double czas = 1000.0 * watch.ElapsedTicks / Stopwatch.Frequency;
-                string czas_zwracany = czas.ToString();
-                //string wtf = IntTableToString(tablica);
-                label3.Text = czas_zwracany;
+                stopwatch.Stop();
+                double czas = Math.Round(stopwatch.Elapsed.TotalSeconds, 2);
+                label3.Text = czas.ToString() + " sekund";
+                stopwatch.Reset();
             }
 
         }
@@ -145,56 +145,58 @@ namespace zaj3_warun
             else
             {
 
-                var watch = new Stopwatch();
-                watch.Start();
+                stopwatch.Start();
                 SortSelection(tablica);
-                watch.Stop();
-                double czas = 1000.0 * watch.ElapsedTicks / Stopwatch.Frequency;
-                string czas_zwracany = czas.ToString();
-                //string wtf = IntTableToString(tablica);
-                label3.Text = czas_zwracany;
+                stopwatch.Stop();
+                double czas = Math.Round(stopwatch.Elapsed.TotalSeconds, 2);
+                label3.Text = czas.ToString() + " sekund";
+                stopwatch.Reset();
             }
         }
 
 
         int[] SortSelection(int[] lista)
         {
-            int issorted = 0;
-            int minimum = lista[0];
-
-            while (issorted != lista.Length - 1)
+            int n = lista.Length;
+            int i = 0;
+            while (i < n - 1)
             {
-                for (int i = 0; i < lista.Length - 1; i++)
+                int minIndex = i;
+                int j = i + 1;
+                while (j < n)
                 {
-                    if (lista[i] <= lista[i + 1])
+                    if (lista[j] < lista[minIndex])
                     {
-                        issorted++;
+                        minIndex = j;
                     }
-                    else
-                    {
-                        continue;
-                    }
-
+                    j++;
                 }
-                if (issorted < lista.Length - 1)
-                    issorted = 0;
-                for (int i = 0; i < lista.Length; i++)
-                {
-                    for (int j = i + 1; j < lista.Length; j++)
-                    {
-                        if (lista[i] > lista[j])
-                        {
-                            int temp = lista[i];
-                            lista[i] = lista[j];
-                            lista[j] = temp;
-                            break;
-                        }
-                    }
-
-                }
+                int temp = lista[i];
+                lista[i] = lista[minIndex];
+                lista[minIndex] = temp;
+                i++;
             }
-
             return lista;
+
+
+            //for (int i = 0; i < lista.Length; i++)
+            //{
+            //    int kmin = 0;
+            //    int curr_kmin = i;
+            //    for (int j = i+1; j < lista.Length; j++) {
+            //        if (lista[j] < lista[kmin])
+            //        {
+            //            j = curr_kmin;
+            //        }
+            //        int temp = lista[curr_kmin];
+            //        lista[curr_kmin] = lista[kmin];
+            //        lista[kmin] = temp;
+            //        kmin = kmin + 1;
+
+            //    }
+            //}
+            //return lista; 
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -212,14 +214,12 @@ namespace zaj3_warun
             else
             {
 
-                var watch = new Stopwatch();
-                watch.Start();
+                stopwatch.Start();
                 SortInsertion(tablica);
-                watch.Stop();
-                double czas = 1000.0 * watch.ElapsedTicks / Stopwatch.Frequency;
-                string czas_zwracany = czas.ToString();
-                //string wtf = IntTableToString(tablica);
-                label3.Text = czas_zwracany;
+                stopwatch.Stop();
+                double czas = Math.Round(stopwatch.Elapsed.TotalSeconds, 2);
+                label3.Text = czas.ToString() + " sekund";
+                stopwatch.Reset();
             }
         }
 
@@ -228,39 +228,23 @@ namespace zaj3_warun
             int issorted = 0;
             int minimum = lista[0];
 
-            while (issorted != lista.Length - 1)
-            {
-                for (int i = 0; i < lista.Length - 1; i++)
-                {
-                    if (lista[i] <= lista[i + 1])
-                    {
-                        issorted++;
-                    }
-                    else
-                    {
-                        continue;
-                    }
-
-                }
-                if (issorted < lista.Length - 1)
-                    issorted = 0;
-                for (int i = 0; i < lista.Length - 1; i++)
+            for (int i = 0; i < lista.Length - 1; i++)
                 {
                     if (lista[i] > lista[i + 1])
                     {
                         for (int j = i; j >= 0; j--)
                         {
-                            int temp = lista[j];
-                            lista[j] = lista[j + 1];
-                            lista[j + 1] = temp;
-                            if (lista[j] < lista[i])
+                            if (lista[j] < lista[j+1])
                             {
                                 break;
                             }
+                            int temp = lista[j];
+                            lista[j] = lista[j + 1];
+                            lista[j + 1] = temp;
+                            
                         }
                     }
                 }
-            }
 
             return lista;
         }
@@ -280,14 +264,12 @@ namespace zaj3_warun
             else
             {
 
-                var watch = new Stopwatch();
-                watch.Start();
+                stopwatch.Start();
                 SortMerge(tablica);
-                watch.Stop();
-                double czas = 1000.0 * watch.ElapsedTicks / Stopwatch.Frequency;
-                string czas_zwracany = czas.ToString();
-                //string wtf = IntTableToString(tablica);
-                label3.Text = czas_zwracany;
+                stopwatch.Stop();
+                double czas = Math.Round(stopwatch.Elapsed.TotalSeconds, 2);
+                label3.Text = czas.ToString() + " sekund";
+                stopwatch.Reset();
             }
         }
 
@@ -364,14 +346,12 @@ namespace zaj3_warun
             else
             {
 
-                var watch = new Stopwatch();
-                watch.Start();
+                stopwatch.Start();
                 SortQuick(tablica);
-                watch.Stop();
-                double czas = 1000.0 * watch.ElapsedTicks / Stopwatch.Frequency;
-                string czas_zwracany = czas.ToString();
-                //string wtf = IntTableToString(tablica);
-                label3.Text = czas_zwracany;
+                stopwatch.Stop();
+                double czas = Math.Round(stopwatch.Elapsed.TotalSeconds, 2);
+                label3.Text = czas.ToString() + " sekund";
+                stopwatch.Reset();
             }
         }
         int[] SortQuick(int[] lista)
@@ -433,8 +413,6 @@ namespace zaj3_warun
 
             return lista;
         }
-        int wartosc;
-        int[] tablica;
         public void button6_Click(object sender, EventArgs e)
         {
             wartosc = (int)numericUpDown1.Value;
