@@ -79,8 +79,9 @@ namespace zaj3_warun
         {
             int max = lista.Length;
 
-            while (max > 1){
-                for(int i = 0; i < max-1; i++)
+            while (max > 1)
+            {
+                for (int i = 0; i < max - 1; i++)
                 {
                     if (lista[i] > lista[i + 1])
                     {
@@ -109,9 +110,18 @@ namespace zaj3_warun
         {
             var LiczbyS = napis.Trim().Split(' ');
             var liczby = new int[LiczbyS.Length];
-            for (int i = 0; i < LiczbyS.Length; i++)
+            try
             {
-                liczby[i] = int.Parse(LiczbyS[i]);
+                for (int i = 0; i < LiczbyS.Length; i++)
+                {
+                    liczby[i] = int.Parse(LiczbyS[i]);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("U¿yto nieprawid³owego typu danych");
+                liczby[0] = 0;
+                return liczby;
             }
             return liczby;
         }
@@ -144,9 +154,9 @@ namespace zaj3_warun
         int[] SortSelection(int[] lista)
         {
             int current_minimum = 0;
-            for(int j = 0; j < lista.Length;j++)
+            for (int j = 0; j < lista.Length; j++)
             {
-                for(int i = j+1; i < lista.Length; i++)
+                for (int i = j + 1; i < lista.Length; i++)
                 {
                     if (lista[current_minimum] > lista[i])
                     {
@@ -192,22 +202,22 @@ namespace zaj3_warun
             int minimum = lista[0];
 
             for (int i = 0; i < lista.Length - 1; i++)
+            {
+                if (lista[i] > lista[i + 1])
                 {
-                    if (lista[i] > lista[i + 1])
+                    for (int j = i; j >= 0; j--)
                     {
-                        for (int j = i; j >= 0; j--)
+                        if (lista[j] < lista[j + 1])
                         {
-                            if (lista[j] < lista[j+1])
-                            {
-                                break;
-                            }
-                            int temp = lista[j];
-                            lista[j] = lista[j + 1];
-                            lista[j + 1] = temp;
-                            
+                            break;
                         }
+                        int temp = lista[j];
+                        lista[j] = lista[j + 1];
+                        lista[j + 1] = temp;
+
                     }
                 }
+            }
 
             return lista;
         }
