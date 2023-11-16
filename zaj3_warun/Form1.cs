@@ -77,25 +77,10 @@ namespace zaj3_warun
 
         int[] SortBoubble(int[] lista)
         {
-            int issorted = 0;
+            int max = lista.Length;
 
-            while (issorted != lista.Length - 1)
-            {
-                for (int i = 0; i < lista.Length - 1; i++)
-                {
-                    if (lista[i] <= lista[i + 1])
-                    {
-                        issorted++;
-                    }
-                    else
-                    {
-                        continue;
-                    }
-
-                }
-                if (issorted < lista.Length - 1)
-                    issorted = 0;
-                for (int i = 0; i < lista.Length - 1; i++)
+            while (max > 1){
+                for(int i = 0; i < max-1; i++)
                 {
                     if (lista[i] > lista[i + 1])
                     {
@@ -104,6 +89,7 @@ namespace zaj3_warun
                         lista[i + 1] = temp;
                     }
                 }
+                max--;
             }
             return lista;
         }
@@ -157,45 +143,22 @@ namespace zaj3_warun
 
         int[] SortSelection(int[] lista)
         {
-            int n = lista.Length;
-            int i = 0;
-            while (i < n - 1)
+            int current_minimum = 0;
+            for(int j = 0; j < lista.Length;j++)
             {
-                int minIndex = i;
-                int j = i + 1;
-                while (j < n)
+                for(int i = j+1; i < lista.Length; i++)
                 {
-                    if (lista[j] < lista[minIndex])
+                    if (lista[current_minimum] > lista[i])
                     {
-                        minIndex = j;
+                        current_minimum = i;
                     }
-                    j++;
                 }
-                int temp = lista[i];
-                lista[i] = lista[minIndex];
-                lista[minIndex] = temp;
-                i++;
+                int temp = lista[j];
+                lista[j] = lista[current_minimum];
+                lista[current_minimum] = temp;
+                current_minimum = j + 1;
             }
             return lista;
-
-
-            //for (int i = 0; i < lista.Length; i++)
-            //{
-            //    int kmin = 0;
-            //    int curr_kmin = i;
-            //    for (int j = i+1; j < lista.Length; j++) {
-            //        if (lista[j] < lista[kmin])
-            //        {
-            //            j = curr_kmin;
-            //        }
-            //        int temp = lista[curr_kmin];
-            //        lista[curr_kmin] = lista[kmin];
-            //        lista[kmin] = temp;
-            //        kmin = kmin + 1;
-
-            //    }
-            //}
-            //return lista; 
 
         }
 
